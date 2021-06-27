@@ -13,4 +13,4 @@ function test() {
   return {a: 1}
 }
 
-app.listen(3098)
+app.listen(3098, () => console.log("Rodando servidor!"))
