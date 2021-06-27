@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2017",
+    "allowJs": true,
     "module": "commonjs",
+    "lib": ["ES6"],
     "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": true,
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

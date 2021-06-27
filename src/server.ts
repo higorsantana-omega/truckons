@@ -1,6 +1,7 @@
 import express from 'express'
 import { createGiftCard } from './routes'
 
+
 const app = express()
 
 app.get("/", (req, res) => {
@@ -8,5 +9,9 @@ app.get("/", (req, res) => {
 })
 
 app.get("/s", createGiftCard)
+
+function teste() {
+    return {a:1}
+}
 
 app.listen(3098)
