@@ -6,9 +6,7 @@
     },
     "extends": [
         "standard",
-        "prettier",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
+        "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -17,11 +15,9 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "prettier",
         "eslint-plugin-import-helpers"
     ],
     "rules": {
-        "prettier/prettier": "error",
         "camelcase": "off",
         "import/no-unresolved": "error",
         "@typescript-eslint/naming-convention": [
