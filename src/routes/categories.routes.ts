@@ -15,7 +15,7 @@ categoriesRoutes.post("/categories", (req: Request, res: Response) => {
         description
     })
 
-    return res.status(201)
+    return res.status(201).send()
 })
 
 export { categoriesRoutes }
