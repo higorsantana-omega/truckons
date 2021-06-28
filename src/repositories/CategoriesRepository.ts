@@ -33,6 +33,7 @@ class CategoriesRepository {
     list(): Category[] {
         return this.categories
     }
+    
 }
 
 export { CategoriesRepository }
