@@ -1,6 +1,4 @@
 import { Response, Request, Router } from "express";
-import { v4 as uuid } from "uuid"
-import { Category } from "../models/Category";
 import { CategoriesRepository } from "../repositories/CategoriesRepository";
 
 const categoriesRoutes = Router()
