@@ -1,5 +1,4 @@
-import { Request, Router } from "express";
-import { Response } from "express-serve-static-core";
+import { Response, Request, Router } from "express";
 
 const categoriesRoutes = Router()
 
