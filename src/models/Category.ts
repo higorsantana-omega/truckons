@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid"
 
 class Category{
-    id:  string
+    id?:  string
     name: string 
     type: string
     platforms: string
