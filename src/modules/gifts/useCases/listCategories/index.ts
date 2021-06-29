@@ -1,6 +1,6 @@
 import { CategoriesRepository } from "../../repositories/CategoriesRepository";
 import { ListCategoriesController } from "./ListCategoriesController";
-import { ListCategoriesUseCase } from "./listCategoriesUseCase";
+import { ListCategoriesUseCase } from "./ListCategoriesUseCase";
 
 const categoriesRepo = new CategoriesRepository()
 const listCategoriesUseCase = new ListCategoriesUseCase(categoriesRepo)
