@@ -2,6 +2,7 @@ import { Response, Request, Router } from "express";
 import { createCategoryController } from "../modules/gifts/useCases/createCategory";
 import { listCategoriesController } from "../modules/gifts/useCases/listCategories";
 import multer from "multer";
+import { importCategoryController } from "../modules/gifts/useCases/importCategory";
 
 const upload = multer({
     dest: "./tmp"
@@ -16,10 +17,8 @@ categoriesRoutes.get("/", (req: Request, res: Response) => {
     return listCategoriesController.handle(req, res)
 })
 
-categoriesRoutes.post("/import",  upload.single("file"),(req, res) => {
-    const { file } = req
-    console.log(file)
-    return res.send()
+categoriesRoutes.post("/import", upload.single("file"), (req, res) => {
+    return importCategoryController.handle(req, res)
 })
 
 export { categoriesRoutes }
