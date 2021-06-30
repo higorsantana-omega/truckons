@@ -4,5 +4,51 @@
         "title": "GiftCard Documentation",
         "description": "This is an API",
         "version": "1.0.0"
+    },
+    "paths": {
+        "/categories": {
+            "post": {
+                "tags": ["Category"],
+                "summary": "Create a category of giftcard",
+                "description": "Create a new category of giftcard",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "platforms": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "PSN PLUS",
+                                    "type": "Código Americano",
+                                    "platforms": "Playstation 4",
+                                    "description": "Cartão digital com codigo americano"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Category already exists"
+                    }
+                }
+            }
+        }
     }
 }
