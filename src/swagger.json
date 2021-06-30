@@ -1,0 +1,8 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "GiftCard Documentation",
+        "description": "This is an API",
+        "version": "1.0.0"
+    }
+}
