@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "GiftCard Documentation",
+        "title": "Truckons Documentation",
         "description": "This is an API",
         "version": "1.0.0"
     },
@@ -9,8 +9,8 @@
         "/categories": {
             "post": {
                 "tags": ["Category"],
-                "summary": "Create a category of giftcard",
-                "description": "Create a new category of giftcard",
+                "summary": "Create a category of truckons",
+                "description": "Create a new category of truckons",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -20,21 +20,13 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "type": {
-                                        "type": "string"
-                                    },
-                                    "platforms": {
-                                        "type": "string"
-                                    },
                                     "description": {
                                         "type": "string"
                                     }
                                 },
                                 "example": {
-                                    "name": "PSN PLUS",
-                                    "type": "Código Americano",
-                                    "platforms": "Playstation 4",
-                                    "description": "Cartão digital com codigo americano"
+                                    "name": "Mercedes-Benz L-312",
+                                    "description": "Primeiro caminhão produzido no Brasil"
                                 }
                             }
                         }
@@ -51,7 +43,7 @@
             },
             "get":{
                 "tags": ["Category"],
-                "summary": "List all categories of giftcard",
+                "summary": "List all categories of truckons",
                 "description":"List All",
                 "responses": {
                     "200":{
@@ -64,12 +56,6 @@
                                         "type": "object",
                                         "properties": {
                                             "name": {
-                                                "type": "string"
-                                            },
-                                            "type": {
-                                                "type": "string"
-                                            },
-                                            "platforms": {
                                                 "type": "string"
                                             },
                                             "description": {
