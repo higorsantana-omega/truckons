@@ -18,13 +18,11 @@ class CategoriesRepository implements ICategoriesRepository {
         return CategoriesRepository.INSTANCE
     }
 
-    create({ name, type, platforms, description } : ICreateCategory): void {
+    create({ name, description } : ICreateCategory): void {
         const category = new Category()
 
     Object.assign(category, {
         name,
-        type,
-        platforms,
         description,
         created_at: new Date()
     })

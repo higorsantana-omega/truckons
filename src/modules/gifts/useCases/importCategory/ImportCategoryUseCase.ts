@@ -1,12 +1,9 @@
 import fs from "fs"
 import csvParse from "csv-parse"
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
-import { categoriesRoutes } from "../../../../routes/categories.routes"
 
 interface IImportCategory{
     name: string 
-    type: string
-    platforms: string
     description: string
 }
 
@@ -22,11 +19,9 @@ class ImportCategoryUseCase{
             stream.pipe(parseFile)
 
             parseFile.on("data", async (line) => {
-                const [name, type, platforms, description] = line
+                const [name, description] = line
                 categories.push({
                     name,
-                    type,
-                    platforms,
                     description
                 })
             })
@@ -44,13 +39,11 @@ class ImportCategoryUseCase{
         const categories = await this.loadCategories(file)
         
         categories.map(async (category) => {
-            const { name, type, platforms, description } = category
+            const { name, description } = category
             const existCategory = this.categoriesRepository.findByName(name)
             if (!existCategory) {
                 this.categoriesRepository.create({
                     name,
-                    type,
-                    platforms,
                     description
                 })
             }

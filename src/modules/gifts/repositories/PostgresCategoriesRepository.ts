@@ -10,8 +10,8 @@ class PostgresCategoriesRepository implements ICategoriesRepository{
     list(): Category[] {
         return null
     }
-    create({ name, type, platforms, description }: ICreateCategory): void {
-        console.log(name, type)
+    create({ name, description }: ICreateCategory): void {
+        console.log(name, description)
     }
 }
 

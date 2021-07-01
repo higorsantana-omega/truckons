@@ -8,9 +8,9 @@ class CreateCategoryController{
     }
 
     handle(req: Request, res: Response): Response {
-        const { name, type, platforms, description } = req.body
+        const { name, description } = req.body
     
-        this.createCategoryUseCase.execute({ name, type, platforms, description })
+        this.createCategoryUseCase.execute({ name, description })
     
         return res.status(201).send()
     }

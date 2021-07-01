@@ -3,8 +3,6 @@ import { v4 as uuid } from "uuid"
 class Category{
     id?:  string
     name: string 
-    type: string
-    platforms: string
     description: string
     created_at: Date
 
