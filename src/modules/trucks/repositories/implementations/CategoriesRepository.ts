@@ -19,16 +19,14 @@ class CategoriesRepository implements ICategoriesRepository {
         return CategoriesRepository.INSTANCE
     }
 
-    create({ name, description } : ICreateCategory): void {
-        const category = new Category()
+    async create({ name, description } : ICreateCategory): Promise<void> {
 
-    Object.assign(category, {
-        name,
-        description,
-        created_at: new Date()
-    })
+        const category = this.repository.create({
+            name,
+            description
+        })
 
-        this.categories.push(category)
+        await this.repository.save(category)
     }
 
     list(): Category[] {
