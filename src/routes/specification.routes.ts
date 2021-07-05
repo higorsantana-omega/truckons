@@ -7,10 +7,7 @@ const specificationsRepository = new SpecificationsRepository()
 
 
 specificationsRoutes.post("/", (req, res) => {
-    const { name, description } = req.body
-    const createSpecificationService = new CreateSpecificationUseCase(specificationsRepository)
-    createSpecificationService.execute({ name, description })
-    return res.status(201).send()
+    
 })
 
 export { specificationsRoutes }
