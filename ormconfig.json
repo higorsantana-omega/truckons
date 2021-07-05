@@ -4,5 +4,8 @@
     "port": 5432,
     "username": "postgres",
     "password": "red12mov",
-    "database": "truckons"
+    "database": "truckons",
+    "cli":{
+        "migrationsDir": "./src/database/migrations"
+    }
 }
