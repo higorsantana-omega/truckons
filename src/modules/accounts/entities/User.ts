@@ -21,8 +21,8 @@ class User {
     @Column()
     driver_license: string
 
-    @Column()
-    isAdmin: boolean
+    @Column('boolean', {default: false})
+    isAdmin: boolean = false
 
     @CreateDateColumn()
     created_at: Date

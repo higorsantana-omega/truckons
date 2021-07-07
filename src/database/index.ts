@@ -1,4 +1,5 @@
 import { createConnection } from "typeorm"
+import { User } from "../modules/accounts/entities/User"
 import { Category } from "../modules/trucks/entities/Category"
 import { Specification } from "../modules/trucks/entities/Specification"
 
@@ -12,9 +13,10 @@ createConnection({
     "database": "truckons",
     entities: [
         Category,
-        Specification
+        Specification,
+        User
     ],
-    synchronize: true,
+    synchronize: false,
     logging: false
 }).then(connection => {
 
