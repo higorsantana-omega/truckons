@@ -15,6 +15,7 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
     }
 
     const [, token] = authHeader.split(" ")
+
     try {
         const { sub: user_id } = verify(token, "7b96e636e4bd247fc6dfe3371a194766") as IPayLoad
         const usersRepository = new UsersRepository()
@@ -22,6 +23,10 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
 
         if (!user) {
             throw new AppError("User does not exists", 401);
+        }
+
+        req.user = {
+            id: user_id
         }
 
         next()
