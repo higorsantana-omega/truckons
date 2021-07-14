@@ -1,7 +1,7 @@
 import { createConnection } from "typeorm"
-import { User } from "../modules/accounts/entities/User"
-import { Category } from "../modules/trucks/entities/Category"
-import { Specification } from "../modules/trucks/entities/Specification"
+import { User } from "@modules/accounts/infra/typeorm/entities/User"
+import { Category } from "@modules/trucks/infra/typeorm/entities/Category" 
+import { Specification } from "@modules/trucks/infra/typeorm/entities/Specification"
 
 console.log("Arquivo database")
 createConnection({

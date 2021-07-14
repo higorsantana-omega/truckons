@@ -1,4 +1,4 @@
-import { AppError } from "@errors/AppError";
+import { AppError } from "../../../../shared/errors/AppError"
 import { ISpecificationsRepository } from "@modules/trucks/repositories/ISpecificationRepository";
 import { inject, injectable } from "tsyringe";
 

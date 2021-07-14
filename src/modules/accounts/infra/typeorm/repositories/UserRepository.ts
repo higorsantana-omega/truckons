@@ -1,7 +1,7 @@
 import { getRepository, Repository } from "typeorm";
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { User } from "../../entities/User";
-import { IUSersRepository } from "../IUsersRepository";
+import { ICreateUserDTO } from "../../../dtos/ICreateUserDTO";
+import { User } from "@modules/accounts/infra/typeorm/entities/User"; 
+import { IUSersRepository } from "../../../repositories/IUsersRepository";
 
 
 class UsersRepository implements IUSersRepository {

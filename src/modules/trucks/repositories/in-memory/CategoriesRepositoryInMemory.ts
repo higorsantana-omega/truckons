@@ -1,4 +1,4 @@
-import { Category } from "../../entities/Category";
+import { Category } from "@modules/trucks/infra/typeorm/entities/Category";
 import { ICategoriesRepository, ICreateCategory } from "../ICategoriesRepository";
 
 class CategoriesRepositoryInMemory implements ICategoriesRepository{
