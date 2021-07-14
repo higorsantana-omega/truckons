@@ -12,6 +12,14 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shares/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"],
+    }
   }
 }
