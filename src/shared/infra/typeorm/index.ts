@@ -11,11 +11,6 @@ createConnection({
     "username": "postgres",
     "password": "red12mov",
     "database": "truckons",
-    entities: [
-        Category,
-        Specification,
-        User
-    ],
     synchronize: false,
     logging: false
 }).then(connection => {
