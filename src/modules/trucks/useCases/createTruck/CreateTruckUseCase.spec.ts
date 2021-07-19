@@ -1,4 +1,5 @@
 import { TrucksRepositoryInMemory } from "@modules/trucks/repositories/in-memory/TrucksRepositoryInMemory"
+import { AppError } from "@shared/errors/AppError"
 import { CreateTruckUseCase } from "./CreateTruckUseCase"
 
 let createTruckUseCase: CreateTruckUseCase
@@ -11,7 +12,7 @@ describe("Create a truck", () => {
   })
 
   it("should be able to create a new truck", async () => {
-    await createTruckUseCase.execute({
+    const truck = await createTruckUseCase.execute({
       name: "Name truck",
       description: "Description truck",
       daily_rate: 200,
@@ -20,5 +21,45 @@ describe("Create a truck", () => {
       brand: "Brand truck",
       category_id: "category"
     })
+    
+    expect(truck).toHaveProperty("id")
+  })
+
+  it("should not be able to create a truck with exists license plate", () => {
+    expect(async () => {
+      await createTruckUseCase.execute({
+        name: "Truck1",
+        description: "Description truck",
+        daily_rate: 200,
+        license_plate: "ABC",
+        fine_amount: 20,
+        brand: "Brand truck",
+        category_id: "category"
+      })
+
+      await createTruckUseCase.execute({
+        name: "Truck2",
+        description: "Description truck",
+        daily_rate: 200,
+        license_plate: "ABC",
+        fine_amount: 20,
+        brand: "Brand truck",
+        category_id: "category"
+      })
+    }).rejects.toBeInstanceOf(AppError)
+  })
+
+  it("should not be able to create a truck with available true by default", async() => {
+    const truck = await createTruckUseCase.execute({
+      name: "Truck2",
+      description: "Description truck",
+      daily_rate: 200,
+      license_plate: "ABC",
+      fine_amount: 20,
+      brand: "Brand truck",
+      category_id: "category"
+    })
+
+    expect(truck.available).toBe(true)
   })
 })
