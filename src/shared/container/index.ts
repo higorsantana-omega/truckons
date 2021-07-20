@@ -5,6 +5,8 @@ import { CategoriesRepository } from "@modules/trucks/infra/typeorm/repositories
 import { ISpecificationsRepository } from "@modules/trucks/repositories/ISpecificationRepository"
 import { container } from "tsyringe"
 import { SpecificationsRepository } from "@modules/trucks/infra/typeorm/repositories/SpecificationsRepository"
+import { ITrucksRepository } from "@modules/trucks/repositories/ITrucksRepository"
+import { TrucksRepository } from "@modules/trucks/infra/typeorm/repositories/TrucksRepository"
 
 
 container.registerSingleton<ICategoriesRepository>(
@@ -20,4 +22,8 @@ container.registerSingleton<ISpecificationsRepository>(
 container.registerSingleton<IUSersRepository>(
     "UsersRepository",
     UsersRepository
+)
+
+container.registerSingleton<ITrucksRepository>(
+  "TrucksRepository", TrucksRepository
 )
