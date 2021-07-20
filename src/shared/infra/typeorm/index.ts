@@ -12,7 +12,10 @@ createConnection({
     "password": "red12mov",
     "database": "truckons",
     synchronize: false,
-    logging: false
+    logging: false,
+    "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
+    "entities": ["./src/modules/**/entities/*.ts"],
+  
 }).then(connection => {
 
 }).catch(error => console.log('Information of error: ', error))
