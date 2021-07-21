@@ -2,8 +2,9 @@ import { ICreateTruckDTO } from "@modules/trucks/dtos/ICreateTruckDTO";
 import { Truck } from "@modules/trucks/infra/typeorm/entities/Truck";
 import { ITrucksRepository } from "../ITrucksRepository";
 
-class TrucksRepositoryInMemory implements ITrucksRepository{
+class TrucksRepositoryInMemory implements ITrucksRepository {
   trucks: Truck[] = []
+
   async create({ brand, daily_rate, name, license_plate, fine_amount, description, category_id }: ICreateTruckDTO): Promise<Truck> {
     const truck = new Truck()
     Object.assign(truck, {
@@ -23,6 +24,16 @@ class TrucksRepositoryInMemory implements ITrucksRepository{
 
   async findByLicensePlate(license_plate: string): Promise<Truck> {
     return this.trucks.find(truck => truck.license_plate === license_plate)
+  }
+
+  async findAvailable(brand?: string, category_id?: string, name?: string): Promise<Truck[]> {
+    return this.trucks
+      .filter(truck => truck.available === true)
+      .filter(truck =>
+        (brand && truck.brand === brand) ||
+        (category_id && truck.category_id === category_id) ||
+        (name && truck.name === name)
+      )
   }
 }
 
