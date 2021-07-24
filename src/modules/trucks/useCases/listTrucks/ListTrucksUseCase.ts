@@ -14,7 +14,6 @@ class ListTrucksUseCase {
   
   async execute({ category_id, brand, name }: IRequest): Promise<Truck[]>{
     const trucks = await this.trucksRepository.findAvailable(brand, category_id, name)
-
     return trucks
   }
   
