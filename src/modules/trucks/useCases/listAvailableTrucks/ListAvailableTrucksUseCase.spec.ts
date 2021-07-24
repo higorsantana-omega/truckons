@@ -1,13 +1,13 @@
 import { TrucksRepositoryInMemory } from "@modules/trucks/repositories/in-memory/TrucksRepositoryInMemory";
-import { ListTrucksUseCase } from "./ListAvailableTrucksUseCase";
+import { ListAvailableTrucksUseCase } from "./ListAvailableTrucksUseCase";
 
-let listTrucksUseCase: ListTrucksUseCase;
+let listTrucksUseCase: ListAvailableTrucksUseCase;
 let trucksRepositoryInMemory: TrucksRepositoryInMemory;
 
 describe("List Trucks", () => {
   beforeEach(() => {
     trucksRepositoryInMemory = new TrucksRepositoryInMemory();
-    listTrucksUseCase = new ListTrucksUseCase(trucksRepositoryInMemory);
+    listTrucksUseCase = new ListAvailableTrucksUseCase(trucksRepositoryInMemory);
   });
   it("should be able to list all available trucks", async () => {
     const truck = await trucksRepositoryInMemory.create({
