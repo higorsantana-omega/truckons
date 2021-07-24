@@ -4,13 +4,21 @@ import { getRepository, Repository } from "typeorm";
 import { Truck } from "../entities/Truck";
 
 class TrucksRepository implements ITrucksRepository {
-  private repository: Repository<Truck>
+  private repository: Repository<Truck>;
 
   constructor() {
-    this.repository = getRepository(Truck)
+    this.repository = getRepository(Truck);
   }
 
-  async create({ brand, category_id, daily_rate, description, fine_amount, name, license_plate }: ICreateTruckDTO): Promise<Truck> {
+  async create({
+    brand,
+    category_id,
+    daily_rate,
+    description,
+    fine_amount,
+    name,
+    license_plate,
+  }: ICreateTruckDTO): Promise<Truck> {
     const truck = this.repository.create({
       name,
       description,
@@ -18,22 +26,45 @@ class TrucksRepository implements ITrucksRepository {
       license_plate,
       fine_amount,
       brand,
-      category_id
-    })
+      category_id,
+    });
 
-    await this.repository.save(truck)
+    await this.repository.save(truck);
 
-    return truck
+    return truck;
   }
 
   async findByLicensePlate(license_plate: string): Promise<Truck> {
     const truck = await this.repository.findOne({
-      license_plate
-    })
+      license_plate,
+    });
 
-    return truck
+    return truck;
   }
 
+  async findAvailable(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Truck[]> {
+    const trucksQuery = await this.repository
+      .createQueryBuilder("t")
+      .where("available = :available", { available: true });
+
+    if (brand) {
+      trucksQuery.andWhere("t.brand = :brand", { brand });
+    }
+
+    if (category_id) {
+      trucksQuery.andWhere("t.category_id = :category_id", { category_id });
+    }
+
+    if (name) {
+      trucksQuery.andWhere("t.name = :name", { name });
+    }
+
+    return await trucksQuery.getMany();
+  }
 }
 
-export { TrucksRepository }
+export { TrucksRepository };
