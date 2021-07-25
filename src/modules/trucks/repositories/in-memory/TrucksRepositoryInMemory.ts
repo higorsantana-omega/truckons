@@ -51,6 +51,10 @@ class TrucksRepositoryInMemory implements ITrucksRepository {
     });
     return all;
   }
+
+  async findById(id: string): Promise<Truck> {
+    return this.trucks.find((truck) => truck.id === id);
+  }
 }
 
 export { TrucksRepositoryInMemory };
