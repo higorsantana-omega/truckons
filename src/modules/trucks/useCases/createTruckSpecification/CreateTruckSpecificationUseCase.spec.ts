@@ -1,15 +1,18 @@
+import { SpecificationsRepositoryInMemory } from "@modules/trucks/repositories/in-memory/SpecificationsRepositoryInMemory";
 import { TrucksRepositoryInMemory } from "@modules/trucks/repositories/in-memory/TrucksRepositoryInMemory";
 import { AppError } from "@shared/errors/AppError";
 import { CreateTruckSpecificationUseCase } from "./CreateTruckSpecificationUseCase";
 
 let createTruckSpecificationUseCase: CreateTruckSpecificationUseCase;
 let trucksRepositoryInMemory: TrucksRepositoryInMemory;
+let specificationsRepositoryInMemory: SpecificationsRepositoryInMemory;
 
 describe("Create Truck Specification", () => {
   beforeEach(() => {
     trucksRepositoryInMemory = new TrucksRepositoryInMemory();
+    specificationsRepositoryInMemory = new SpecificationsRepositoryInMemory();
     createTruckSpecificationUseCase = new CreateTruckSpecificationUseCase(
-      trucksRepositoryInMemory
+      trucksRepositoryInMemory, specificationsRepositoryInMemory
     );
   });
 
