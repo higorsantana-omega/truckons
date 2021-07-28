@@ -1,4 +1,5 @@
 import { CreateTruckController } from "@modules/trucks/useCases/createTruck/CreateTruckController";
+import { CreateTruckSpecificationController } from "@modules/trucks/useCases/createTruckSpecification/CreateTruckSpecificationController";
 import { ListAvailableTrucksController } from "@modules/trucks/useCases/listAvailableTrucks/ListAvailableTrucksController";
 import { Router } from "express";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
@@ -8,6 +9,7 @@ const trucksRoutes = Router();
 
 const createTruckController = new CreateTruckController();
 const listAvailableTrucksController = new ListAvailableTrucksController();
+const createTruckSpecificationController = new CreateTruckSpecificationController();
 
 trucksRoutes.post(
   "/",
@@ -17,5 +19,12 @@ trucksRoutes.post(
 );
 
 trucksRoutes.get("/available", listAvailableTrucksController.handle);
+
+trucksRoutes.post(
+  "/specifications/:id",
+  ensureAuthenticated,
+  ensureAdmin,
+  createTruckSpecificationController.handle
+);
 
 export { trucksRoutes };

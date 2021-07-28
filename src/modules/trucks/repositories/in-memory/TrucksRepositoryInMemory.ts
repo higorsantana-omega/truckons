@@ -13,6 +13,7 @@ class TrucksRepositoryInMemory implements ITrucksRepository {
     fine_amount,
     description,
     category_id,
+    id,
   }: ICreateTruckDTO): Promise<Truck> {
     const truck = new Truck();
     Object.assign(truck, {
@@ -23,6 +24,7 @@ class TrucksRepositoryInMemory implements ITrucksRepository {
       fine_amount,
       description,
       category_id,
+      id,
     });
 
     this.trucks.push(truck);

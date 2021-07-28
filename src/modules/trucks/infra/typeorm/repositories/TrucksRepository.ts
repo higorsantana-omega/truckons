@@ -18,7 +18,8 @@ class TrucksRepository implements ITrucksRepository {
     fine_amount,
     name,
     license_plate,
-    specifications
+    specifications,
+    id,
   }: ICreateTruckDTO): Promise<Truck> {
     const truck = this.repository.create({
       name,
@@ -28,7 +29,8 @@ class TrucksRepository implements ITrucksRepository {
       fine_amount,
       brand,
       category_id,
-      specifications
+      specifications,
+      id,
     });
 
     await this.repository.save(truck);

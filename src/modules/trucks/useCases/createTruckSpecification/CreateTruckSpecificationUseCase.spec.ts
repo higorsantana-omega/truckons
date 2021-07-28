@@ -12,16 +12,20 @@ describe("Create Truck Specification", () => {
     trucksRepositoryInMemory = new TrucksRepositoryInMemory();
     specificationsRepositoryInMemory = new SpecificationsRepositoryInMemory();
     createTruckSpecificationUseCase = new CreateTruckSpecificationUseCase(
-      trucksRepositoryInMemory, specificationsRepositoryInMemory
+      trucksRepositoryInMemory,
+      specificationsRepositoryInMemory
     );
   });
 
   it("should not be able to add a new specification to a now-existent truck", async () => {
     expect(async () => {
-      const truck_id = "123456"
-    const specifications_id = ["20182108"]
-    await createTruckSpecificationUseCase.execute({truck_id, specifications_id});
-    }).rejects.toBeInstanceOf(AppError)
+      const truck_id = "123456";
+      const specifications_id = ["20182108"];
+      await createTruckSpecificationUseCase.execute({
+        truck_id,
+        specifications_id,
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 
   it("should be able to add a new specification to the truck", async () => {
@@ -32,10 +36,21 @@ describe("Create Truck Specification", () => {
       license_plate: "ABC",
       fine_amount: 20,
       brand: "Brand truck",
-      category_id: "category"
-    })
+      category_id: "category",
+    });
 
-    const specifications_id = ["20182108"]
-    await createTruckSpecificationUseCase.execute({truck_id: truck.id, specifications_id});
+    const specification = await specificationsRepositoryInMemory.create({
+      description: "test",
+      name: "test",
+    });
+
+    const specifications_id = [specification.id];
+    const specificationTrucks = await createTruckSpecificationUseCase.execute({
+      truck_id: truck.id,
+      specifications_id,
+    });
+
+    expect(specificationTrucks).toHaveProperty("specifications");
+    expect(specificationTrucks.specifications.length).toBe(1);
   });
 });
