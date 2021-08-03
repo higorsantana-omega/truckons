@@ -42,7 +42,7 @@ export class CreateTrucks1616767002011 implements MigrationInterface {
           },
           {
             name: "category_id",
-            type: "varchar",
+            type: "uuid",
             isNullable: true,
           },
           {

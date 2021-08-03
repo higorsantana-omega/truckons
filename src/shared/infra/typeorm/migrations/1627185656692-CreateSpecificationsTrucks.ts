@@ -19,7 +19,7 @@ export class CreateSpecificationsTrucks1627185656692
           },
           {
             name: "specification_id",
-            type: "varchar",
+            type: "uuid",
           },
           {
             name: "created_at",

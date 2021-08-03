@@ -13,7 +13,7 @@ export class CreateRentals1627838228298 implements MigrationInterface {
           },
           {
             name: "user_id",
-            type: "varchar",
+            type: "uuid",
           },
           {
             name: "start_date",
