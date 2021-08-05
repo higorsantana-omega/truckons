@@ -71,7 +71,17 @@ class TrucksRepository implements ITrucksRepository {
   }
 
   async findById(id: string): Promise<Truck> {
-    return await this.repository.findOne(id)
+    return await this.repository.findOne(id);
+  }
+
+  async updateAvailable(id: string, available: boolean): Promise<void> {
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({ available })
+      .where("id = :id")
+      .setParameters({ id })
+      .execute();
   }
 }
 

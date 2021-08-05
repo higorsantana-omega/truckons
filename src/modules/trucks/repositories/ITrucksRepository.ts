@@ -10,6 +10,7 @@ interface ITrucksRepository {
     name?: string
   ): Promise<Truck[]>;
   findById(id: string): Promise<Truck>;
+  updateAvailable(id: string, available: boolean): Promise<void>;
 }
 
 export { ITrucksRepository };
