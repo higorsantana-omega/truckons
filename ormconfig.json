@@ -9,6 +9,7 @@
     "logging": false,
     "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
     "entities": ["./src/modules/**/entities/*.ts"],
+    "migrationsTableName": "_migrations",
     "cli":{
         "migrationsDir": "./src/shared/infra/typeorm/migrations"
     }
