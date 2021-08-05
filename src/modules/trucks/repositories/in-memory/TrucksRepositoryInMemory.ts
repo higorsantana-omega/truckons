@@ -57,6 +57,12 @@ class TrucksRepositoryInMemory implements ITrucksRepository {
   async findById(id: string): Promise<Truck> {
     return this.trucks.find((truck) => truck.id === id);
   }
+
+  async updateAvailable(id: string, available: boolean): Promise<void> {
+    const findIndex = this.trucks.findIndex(truck => truck.id = id)
+    this.trucks[findIndex].available = available
+  }
+
 }
 
 export { TrucksRepositoryInMemory };
