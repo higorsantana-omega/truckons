@@ -5,6 +5,7 @@ import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsReposi
 import { AppError } from "@shared/errors/AppError";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 import { inject, injectable } from "tsyringe";
+import { ITrucksRepository } from "@modules/trucks/repositories/ITrucksRepository";
 
 dayjs.extend(utc);
 
@@ -20,7 +21,9 @@ class CreateRentalUseCase {
     @inject("RentalsRepository")
     private rentalsRepository: IRentalsRepository,
     @inject("DayjsDateProvider")
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+    @inject("TrucksRepository")
+    private trucksRepository: ITrucksRepository
   ) {}
 
   async execute({
@@ -61,6 +64,8 @@ class CreateRentalUseCase {
       truck_id,
       expected_return_date,
     });
+
+    await this.trucksRepository.updateAvailable(truck_id, false);
 
     return rental;
   }
