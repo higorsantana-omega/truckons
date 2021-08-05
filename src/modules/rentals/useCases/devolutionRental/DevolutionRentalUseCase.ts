@@ -23,7 +23,7 @@ class DevolutionRentalUseCase {
 
   async execute({ id, user_id }: IRequest): Promise<Rental> {
     const rental = await this.rentalsRepository.findById(id);
-    const truck = await this.trucksRepository.findById(id);
+    const truck = await this.trucksRepository.findById(rental.truck_id);
     const minimum_daily = 1;
 
     if (!rental) {
@@ -50,7 +50,7 @@ class DevolutionRentalUseCase {
     if (delay > 0) {
       const calculate_fine = delay * truck.fine_amount;
       total = calculate_fine;
-    } 
+    }
 
     total += daily * truck.daily_rate;
 
