@@ -18,14 +18,15 @@ describe("Create Truck Specification", () => {
   });
 
   it("should not be able to add a new specification to a now-existent truck", async () => {
-    expect(async () => {
-      const truck_id = "123456";
-      const specifications_id = ["20182108"];
-      await createTruckSpecificationUseCase.execute({
+    const truck_id = "123456";
+    const specifications_id = ["20182108"];
+
+    await expect(
+      createTruckSpecificationUseCase.execute({
         truck_id,
         specifications_id,
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("Truck does not exists"));
   });
 
   it("should be able to add a new specification to the truck", async () => {
