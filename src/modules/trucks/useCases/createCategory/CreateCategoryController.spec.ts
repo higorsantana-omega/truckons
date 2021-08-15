@@ -12,8 +12,8 @@ const jestTimeoutInMS = 50 * 1000;
 
 describe("Create Category Controller", () => {
   beforeAll(async () => {
-    connection = await createConnection();
-    await connection.runMigrations();
+    const connection = await createConnection();
+    // await connection.runMigrations();
 
     const id = uuid();
     const password = await hash("admin", 8);

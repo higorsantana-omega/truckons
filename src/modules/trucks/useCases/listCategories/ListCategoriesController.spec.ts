@@ -5,17 +5,18 @@ import { v4 as uuid } from "uuid";
 import createConnection from "@shared/infra/typeorm";
 import { Connection } from "typeorm";
 import { hash } from "bcrypt";
+import { getConnectionManager, getConnectionOptions } from "typeorm";
 
 let connection: Connection;
 
 const jestTimeoutInMS = 50 * 1000;
+const id = uuid();
 
 describe("Create Category Controller", () => {
   beforeAll(async () => {
     connection = await createConnection();
-    await connection.runMigrations();
+    // await connection.runMigrations();
 
-    const id = uuid();
     const password = await hash("admin", 8);
 
     await connection.query(
@@ -27,6 +28,8 @@ describe("Create Category Controller", () => {
 
   afterAll(async () => {
     // await connection.dropDatabase()
+    await connection.query(`SELECT * FROM users WHERE id = ${id}`)
+    await connection.query('SELECT * FROM categories WHERE name like "Category Supertest"')
     await connection.close();
   });
 
@@ -51,10 +54,9 @@ describe("Create Category Controller", () => {
         });
       const response = await request(app).get("/categories");
 
-      expect(response.status).toBe(201);
-      expect(response.body.length).toBe(1);
-      expect(response.body[0]).toHaveProperty("id");
-      expect(response.body[0].name).toEqual("Category Supertest");
+      expect(response.status).toBe(200);
+      expect(response.body[-1]).toHaveProperty("id");
+      expect(response.body[-1].name).toEqual("Category Supertest");
     },
     jestTimeoutInMS
   );

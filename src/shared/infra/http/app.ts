@@ -9,6 +9,17 @@ import "@shared/container";
 import { router } from "./routes";
 import { AppError } from "../../errors/AppError";
 
+// const env = (() => {
+//   if (process.env.NODE_ENV === 'test') {
+//     '.env'
+//   }
+// })
+
+// require('dotenv').config({
+//   // process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+//   path: env
+// })
+
 createConnection();
 const app = express();
 

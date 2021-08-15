@@ -20,15 +20,21 @@ console.log("Arquivo database");
 
 // }).catch(error => console.log('Information of error: ', error))
 
+// const env = (() => {
+//   if (process.env.NODE_ENV === 'test') {
+//     '.env'
+//   }
+// })
+
+// require('dotenv').config({
+//   // process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+//   path: env
+// })
+
 export default async (): Promise<Connection> => {
   const defaultOptions = await getConnectionOptions();
 
   return createConnection(
-    Object.assign(defaultOptions, {
-      database:
-        process.env.NODE_ENV === "test"
-          ? "truckon_test"
-          : defaultOptions.database,
-    })
+    Object.assign(defaultOptions)
   );
 };
