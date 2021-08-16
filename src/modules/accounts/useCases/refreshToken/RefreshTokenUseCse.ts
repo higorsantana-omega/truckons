@@ -3,16 +3,17 @@ import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTok
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider"
 import { AppError } from "@shared/errors/AppError"
 import { sign, verify } from "jsonwebtoken"
-import { inject } from "tsyringe"
+import { inject, injectable } from "tsyringe"
 
 interface IPlayload {
   sub: string;
   email: string;
 }
 
+@injectable()
 class RefreshTokenUseCase {
   constructor(
-    @inject("UsersTokenRepository")
+    @inject("UsersTokensRepository")
     private usersTokensRepository: IUsersTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider
@@ -29,7 +30,7 @@ class RefreshTokenUseCase {
 
     await this.usersTokensRepository.deleteById(userToken.id)
 
-    const refresh_token = sign(email, auth.secret_refresh_token, {
+    const refresh_token = sign({ email }, auth.secret_refresh_token, {
       subject: sub,
       expiresIn: auth.expires_in_refresh_token
     })
