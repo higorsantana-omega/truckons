@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { container, injectable } from "tsyringe";
-import { RefreshTokenUseCase } from "./RefreshTokenUseCse";
+import { container } from "tsyringe";
+import { RefreshTokenUseCase } from "./RefreshTokenUseCase";
 
 class RefreshTokenController {
   async handle(req: Request, res: Response): Promise<Response>{
